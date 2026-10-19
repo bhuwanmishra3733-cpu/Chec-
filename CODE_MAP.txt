@@ -1,0 +1,69 @@
+VAMPIRE BROWSER — CODE MAP
+
+Each path below is the exact location inside this Android project.
+
+.github/workflows/android.yml
+  Purpose: GitHub Actions workflow: builds the Android debug APK and uploads it as an artifact.
+settings.gradle.kts
+  Purpose: Declares Gradle plugin/dependency repositories and includes the app module.
+build.gradle.kts
+  Purpose: Root Gradle plugin versions and clean task.
+gradle.properties
+  Purpose: Gradle and Kotlin build properties.
+.gitignore
+  Purpose: Files/folders Git should ignore.
+app/build.gradle.kts
+  Purpose: Android app module configuration, SDK levels, Kotlin/Compose settings and dependencies.
+app/src/main/AndroidManifest.xml
+  Purpose: App permissions, application/activity registration, launcher and web URL intent filters, FileProvider.
+app/src/main/res/xml/file_paths.xml
+  Purpose: FileProvider paths.
+app/src/main/res/values/strings.xml
+  Purpose: Android string resources.
+app/src/main/java/com/vampire/browser/VampireApp.kt
+  Purpose: Application subclass.
+app/src/main/java/com/vampire/browser/MainActivity.kt
+  Purpose: Main entry activity; initializes database/preferences/tab manager and switches between screens.
+app/src/main/java/com/vampire/browser/data/Models.kt
+  Purpose: Data models for bookmarks, notes, downloads and vault files.
+app/src/main/java/com/vampire/browser/data/PreferenceManager.kt
+  Purpose: Stores browser preferences and vault PIN hash/salt in SharedPreferences.
+app/src/main/java/com/vampire/browser/data/DatabaseHelper.kt
+  Purpose: SQLite database and operations for bookmarks, notes, history and downloads.
+app/src/main/java/com/vampire/browser/security/SecurityUtils.kt
+  Purpose: Creates and verifies salted PBKDF2 PIN hashes.
+app/src/main/java/com/vampire/browser/browser/BrowserTab.kt
+  Purpose: Data model for a browser tab and its WebView state.
+app/src/main/java/com/vampire/browser/browser/VampireWebClient.kt
+  Purpose: WebView page load, navigation state, error and SSL handling.
+app/src/main/java/com/vampire/browser/browser/TabManager.kt
+  Purpose: Creates/manages WebViews and tabs, desktop mode, private-tab cleanup and history.
+app/src/main/java/com/vampire/browser/ui/theme/Color.kt
+  Purpose: Color palette for the dark Vampire theme.
+app/src/main/java/com/vampire/browser/ui/theme/Theme.kt
+  Purpose: Material 3 dark theme setup.
+app/src/main/java/com/vampire/browser/ui/screens/BrowserScreen.kt
+  Purpose: Main browser UI: address/search bar, WebView, navigation, tabs and menu.
+app/src/main/java/com/vampire/browser/ui/screens/TabSwitcherScreen.kt
+  Purpose: UI for viewing, selecting, creating and closing tabs.
+app/src/main/java/com/vampire/browser/ui/screens/VaultScreen.kt
+  Purpose: Private Vault PIN setup/unlock and vault file list UI.
+app/src/main/java/com/vampire/browser/ui/screens/DownloadsScreen.kt
+  Purpose: Downloads list UI backed by DatabaseHelper.
+app/src/main/java/com/vampire/browser/ui/screens/BookmarksScreen.kt
+  Purpose: Bookmarks list, selection and deletion UI.
+app/src/main/java/com/vampire/browser/ui/screens/NotesScreen.kt
+  Purpose: Create, display and delete notes UI.
+app/src/main/java/com/vampire/browser/ui/screens/SettingsScreen.kt
+  Purpose: Privacy settings UI for clearing history, cache and cookies.
+README.md
+  Purpose: Project overview and instructions for building APK with GitHub Actions.
+
+IMPORTANT NOTES
+- MainActivity.kt connects the screens and shared managers.
+- BrowserScreen.kt uses TabManager and VampireTheme.
+- TabManager.kt uses BrowserTab, VampireWebClient, and DatabaseHelper.
+- BookmarksScreen.kt, NotesScreen.kt, DownloadsScreen.kt, and SettingsScreen.kt use DatabaseHelper.
+- VaultScreen.kt uses PreferenceManager and SecurityUtils.
+- Gradle configuration defines Android/Kotlin/Compose dependencies.
+- This map describes references visible in source; it is not a successful-build verification.
